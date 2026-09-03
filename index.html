@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#e9d7ad" />
+    <title>Sanjeevani | Register</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- INTRO VIDEO -->
+    <section
+      id="intro"
+      class="intro-screen"
+      aria-label="Sanjeevani introduction"
+    >
+      <video
+        id="introVideo"
+        class="intro-video"
+        autoplay
+        muted
+        playsinline
+        preload="auto"
+      >
+        <source src="WhatsApp Video 2026-08-28 at 10.21.57 PM.mp4" type="video/mp4" />
+        Your browser does not support HTML5 video.
+      </video>
+
+      <div class="intro-overlay"></div>
+      <div class="intro-bottom">
+        <span>Traditional wisdom • Modern wellness</span>
+        <button id="skipBtn" class="skip-btn" type="button">Skip intro</button>
+      </div>
+    </section>
+
+    <!-- REGISTRATION PAGE -->
+    <main id="registerPage" class="register-page" aria-hidden="true">
+      <div class="mandala mandala-left"></div>
+      <div class="mandala mandala-right"></div>
+
+      <div class="register-shell">
+        <div class="brand-mark">
+          <span class="leaf-icon">❧</span>
+          <span>Sanjeevani</span>
+        </div>
+
+        <p class="eyebrow">AYURVEDA • DIET • WELLNESS</p>
+        <h1>Begin Your Wellness Journey</h1>
+        <p class="subtitle">
+          Create your account and explore personalised Ayurvedic guidance and
+          healthy lifestyle plans.
+        </p>
+
+        <form id="registerForm" class="register-card" novalidate>
+          <div class="form-row">
+            <div class="field">
+              <label for="fullName">Full name</label>
+              <input
+                id="fullName"
+                name="fullName"
+                type="text"
+                placeholder="Enter your name"
+                autocomplete="name"
+                required
+              />
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                placeholder="you@example.com"
+                autocomplete="email"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="field">
+              <label for="phone">Phone number</label>
+              <input
+                id="phone"
+                name="phone"
+                type="tel"
+                placeholder="Enter phone number"
+                autocomplete="tel"
+              />
+            </div>
+            <div class="field">
+              <label for="age">Age</label>
+              <input
+                id="age"
+                name="age"
+                type="number"
+                min="1"
+                max="120"
+                placeholder="Age"
+              />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="field">
+              <label for="password">Password</label>
+              <input
+                id="password"
+                name="password"
+                type="password"
+                placeholder="Create a password"
+                autocomplete="new-password"
+                required
+              />
+            </div>
+            <div class="field">
+              <label for="confirmPassword">Confirm password</label>
+              <input
+                id="confirmPassword"
+                name="confirmPassword"
+                type="password"
+                placeholder="Re-enter password"
+                autocomplete="new-password"
+                required
+              />
+            </div>
+          </div>
+
+          <label class="consent">
+            <input id="terms" type="checkbox" required />
+            <span
+              >I agree to the terms and understand that the website provides
+              wellness information, not medical diagnosis.</span
+            >
+          </label>
+
+          <button class="register-btn" type="submit">
+            <span>Create Account</span>
+            <span aria-hidden="true">→</span>
+          </button>
+
+          <p
+            id="formMessage"
+            class="form-message"
+            role="status"
+            aria-live="polite"
+          ></p>
+        </form>
+
+        <p class="login-note">
+          Already registered?
+          <a href="#" id="signInLink">Sign in</a>
+        </p>
+        <p class="footer-note">
+          Sanjeevani 
+        • Rooted in tradition, designed for today
+        </p>
+      </div>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

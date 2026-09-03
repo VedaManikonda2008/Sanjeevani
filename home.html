@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css"
+          integrity="sha512-QeR2VH+lsBE5LSAe1Q5EnTBbe7XTBubt8dG93Y7gidSgdMCr8nVqKcfKAMyN96SV8KDbZVTDXChatu5G2KQGzg=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer">
+
+    <link rel="stylesheet" href="home.css">
+
+</head>
+
+<body>
+
+    <div class="main">
+
+        <!-- NAVBAR -->
+        <div class="navbar">
+
+            <button class="menu-button" id="menuButton" type="button" aria-label="Open navigation menu" aria-expanded="false">
+                <i class="fa-solid fa-bars" aria-hidden="true"></i>
+            </button>
+
+            <div class="logo">
+                Sanjeevani
+            </div>
+
+            <ul class="links">
+                <li>Home</li>
+                <li>Diet Plan</li>
+                <li>About Us</li>
+                <li>Contact</li>
+            </ul>
+
+            <button class="search-button" id="searchButton" type="button" aria-label="Search" aria-expanded="false">
+                <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+            </button>
+
+        </div>
+
+        <form class="search-panel" id="searchPanel" role="search" hidden>
+            <label for="siteSearch">Search Sanjeevani</label>
+            <div class="search-row">
+                <input id="siteSearch" type="search" placeholder="Search wellness topics" autocomplete="off">
+                <button type="submit">Search</button>
+            </div>
+            <p id="searchMessage" class="search-message" aria-live="polite"></p>
+        </form>
+
+        <!-- HERO -->
+        <div class="hero">
+
+            <div class="left">
+
+                <span class="left1">
+                    Welcome To  Ayurvedic Store
+                </span>
+
+                <span class="left2">
+                    Natural Care
+                </span>
+
+                <span class="left3">
+                    Explore Products
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- DIET PLAN -->
+        <div class="diet-plan" id="diet-plan">
+
+            <h2>Personalized Diet Plans</h2>
+
+            <p>
+                Healthy food and natural wellness for a better lifestyle.
+            </p>
+
+        </div>
+
+    </div>
+
+    <script src="home.js"></script>
+
+</body>
+
+</html>

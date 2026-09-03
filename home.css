@@ -1,0 +1,196 @@
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background-image: url("ayur.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.navbar {
+    display: flex;
+    justify-content: flex-start;
+    gap: 24px;
+
+    padding: 0 50px;
+
+    height: 70px;
+
+    align-items: center;
+}
+
+.links {
+    display: flex;
+    list-style: none;
+    gap: 40px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.logo {
+    color: orange;
+    font-size: 60px;
+    font-weight: 600;
+}
+
+.links li {
+    font-size: 19px;
+    color: orange;
+    cursor: pointer;
+}
+
+.menu-button,
+.search-button {
+    border: 0;
+    background: transparent;
+    color: orange;
+    font-size: 25px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.menu-button {
+    order: -1;
+}
+
+.search-button {
+    margin-left: auto;
+}
+
+.menu-button:hover,
+.search-button:hover {
+    color: white;
+}
+
+.search-panel {
+    width: min(520px, calc(100% - 40px));
+    margin: 10px 20px 0 auto;
+    padding: 16px;
+    background: rgba(25, 35, 20, 0.88);
+    color: wheat;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+}
+
+.search-panel[hidden] {
+    display: none;
+}
+
+.search-panel label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.search-row {
+    display: flex;
+    gap: 8px;
+}
+
+.search-row input {
+    flex: 1;
+    min-width: 0;
+    padding: 10px;
+    border: 0;
+    border-radius: 6px;
+}
+
+.search-row button {
+    border: 0;
+    border-radius: 6px;
+    padding: 10px 16px;
+    background: orange;
+    color: #2c2114;
+    cursor: pointer;
+}
+
+.search-message {
+    margin: 10px 0 0;
+}
+
+@media (max-width: 760px) {
+    .navbar {
+        padding: 0 16px;
+        gap: 8px;
+    }
+
+    .logo {
+        font-size: 38px;
+    }
+
+    .links {
+        position: absolute;
+        top: 70px;
+        left: 16px;
+        right: 16px;
+        display: none;
+        flex-direction: column;
+        gap: 18px;
+        margin: 0;
+        padding: 20px;
+        background: rgba(25, 35, 20, 0.92);
+        border-radius: 10px;
+    }
+
+    .links.is-open {
+        display: flex;
+    }
+}
+
+.hero {
+    display: flex;
+}
+
+.left {
+    display: flex;
+    flex-direction: column;
+
+    padding-left: 240px;
+
+    align-items: flex-start;
+
+    gap: 15px;
+}
+
+.left1 {
+    font-size: 35px;
+    font-style: italic;
+    color: wheat;
+    font-weight: 600;
+    margin-left: 30px;
+    margin-top: 150px;
+}
+
+.left2 {
+    font-size: 35px;
+    color: wheat;
+    font-style:italic ;
+   margin-left: 30px;
+}
+
+.left3 {
+    border: 2px solid rgb(33, 34, 34);
+    background-color: rgb(237, 170, 70);
+    padding: 5px 15px;
+    font-weight:100;
+
+    border-radius: 30px;
+
+    cursor: pointer;
+    color: rgb(32, 31, 30);
+    margin-left: 30px;
+}
+.diet-plan h2 {
+    font-size: 27px;
+    color:wheat;
+    font-style: italic;
+    margin-left: 270px;
+}
+
+.diet-plan p {
+    font-size: 20px;
+    color:wheat;
+    font-style: italic;
+    margin-left: 270px;
+}
