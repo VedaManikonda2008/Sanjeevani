@@ -292,6 +292,14 @@ if (!strongPassword.test(newPassword)) {
         return;
       }
 
+      localStorage.setItem("sanjeevaniLoggedIn", "true");
+      const profile = result.user || {
+        fullName: result.message.replace(/^Welcome back,\s*/, "").replace(/!$/, ""),
+        email
+      };
+      localStorage.setItem("sanjeevaniProfile", JSON.stringify(profile));
+      localStorage.removeItem("sanjeevaniWishlist");
+      localStorage.removeItem("sanjeevaniCart");
       loginMessage.textContent = result.message;
       setTimeout(() => {
         window.location.href = "home.html";
@@ -336,13 +344,13 @@ function showHomePage(fullName) {
 
         <div class="home-option">
           <span>🌿</span>
-          <h3>Ayurveda</h3>
+          <h3><a href="products.html">Ayurveda</a></h3>
           <p>Explore Ayurvedic knowledge and natural wellness.</p>
         </div>
 
         <div class="home-option">
           <span>🥗</span>
-          <h3>Diet Planner</h3>
+          <h3><a href="diet-planner/diet-planner/public/diet-planner.html">Healthy Living</a></h3>
           <p>Create a personalized healthy diet plan.</p>
         </div>
 

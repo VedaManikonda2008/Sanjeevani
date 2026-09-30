@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your collection | Sanjeevani</title>
+  <link rel="stylesheet" href="collection.css">
+</head>
+<body>
+  <main class="collection-page">
+    <header class="collection-header">
+      <a class="back-link" href="products.html">&#8592; Continue shopping</a>
+      <p class="brand">Sanjeevani</p>
+      <h1 id="pageTitle">Your collection</h1>
+    </header>
+    <p id="collectionMessage" class="collection-message" aria-live="polite"></p>
+    <ul id="collectionList" class="collection-list"></ul>
+    <footer id="cartSummary" class="cart-summary" hidden>
+      <span>Cart total</span>
+      <strong id="cartTotal">&#8377;0.00</strong>
+    </footer>
+  </main>
+  <script>
+    const profile = JSON.parse(localStorage.getItem("sanjeevaniProfile") || "null");
+    const type = new URLSearchParams(location.search).get("type") === "cart" ? "cart" : "wishlist";
+    const collectionName = type === "cart" ? "sanjeevaniCart" : "sanjeevaniWishlist";
+    const storageKey = profile?.email
+      ? `${collectionName}:${encodeURIComponent(profile.email.trim().toLowerCase())}`
+      : null;
+    const pageTitle = document.getElementById("pageTitle");
+    const message = document.getElementById("collectionMessage");
+    const list = document.getElementById("collectionList");
+    const cartSummary = document.getElementById("cartSummary");
+    const cartTotal = document.getElementById("cartTotal");
+
+    document.title = `${type === "cart" ? "Cart" : "Wishlist"} | Sanjeevani`;
+    pageTitle.textContent = type === "cart" ? "Your cart" : "Your wishlist";
+    cartSummary.hidden = type !== "cart";
+
+    function getItems() {
+      return storageKey ? JSON.parse(localStorage.getItem(storageKey) || "[]") : null;
+    }
+
+    function saveItems(items) {
+      localStorage.setItem(storageKey, JSON.stringify(items));
+      render();
+    }
+
+    function render() {
+      list.replaceChildren();
+      const items = getItems();
+      if (!items) {
+        message.textContent = "Please log in to view your saved products.";
+        cartTotal.textContent = "₹0.00";
+        return;
+      }
+      message.textContent = items.length ? "" : `Your ${type} is empty.`;
+      let total = 0;
+
+      items.forEach((entry, index) => {
+        const item = typeof entry === "string" ? { name: entry, quantity: 1, unitPrice: 0 } : entry;
+        const row = document.createElement("li");
+        row.className = "collection-item";
+        const details = document.createElement("div");
+        details.className = "item-details";
+        const name = document.createElement("a");
+        name.href = `product-details.html?product=${encodeURIComponent(item.name.replace(/ \(\d+ grams\)$/, ""))}`;
+        name.textContent = item.name;
+        details.append(name);
+        row.append(details);
+
+        if (type === "cart") {
+          const quantity = Number(item.quantity) || 1;
+          const unitPrice = Number(item.unitPrice) || 0;
+          total += quantity * unitPrice;
+          const controls = document.createElement("div");
+          controls.className = "item-controls";
+          const minus = document.createElement("button");
+          minus.type = "button";
+          minus.textContent = "−";
+          minus.setAttribute("aria-label", `Decrease ${item.name} quantity`);
+          minus.addEventListener("click", () => {
+            const updated = getItems();
+            const current = typeof updated[index] === "string" ? { name: updated[index], quantity: 1, unitPrice: 0 } : updated[index];
+            current.quantity = (Number(current.quantity) || 1) - 1;
+            if (current.quantity <= 0) updated.splice(index, 1);
+            else updated[index] = current;
+            saveItems(updated);
+          });
+          const count = document.createElement("span");
+          count.textContent = String(quantity);
+          const plus = document.createElement("button");
+          plus.type = "button";
+          plus.textContent = "+";
+          plus.setAttribute("aria-label", `Increase ${item.name} quantity`);
+          plus.addEventListener("click", () => {
+            const updated = getItems();
+            const current = typeof updated[index] === "string" ? { name: updated[index], quantity: 1, unitPrice: 0 } : updated[index];
+            current.quantity = (Number(current.quantity) || 1) + 1;
+            updated[index] = current;
+            saveItems(updated);
+          });
+          const price = document.createElement("strong");
+          price.className = "item-price";
+          price.textContent = `₹${(quantity * unitPrice).toFixed(2)}`;
+          controls.append(minus, count, plus, price);
+          row.append(controls);
+        }
+
+        const remove = document.createElement("button");
+        remove.type = "button";
+        remove.className = "remove-button";
+        remove.textContent = "Remove";
+        remove.addEventListener("click", () => {
+          const updated = getItems();
+          updated.splice(index, 1);
+          saveItems(updated);
+        });
+        row.append(remove);
+        list.append(row);
+      });
+
+      cartTotal.textContent = `₹${total.toFixed(2)}`;
+    }
+
+    async function initializeCollection() {
+      if (type === "cart" && storageKey) {
+        try {
+          const response = await fetch("/api/products");
+          if (!response.ok) throw new Error("Current prices are unavailable.");
+          const result = await response.json();
+          const products = new Map(result.products.map((product) => [product.name, Number(product.price)]));
+          const items = getItems() || [];
+          const updatedItems = items.map((entry) => {
+            const item = typeof entry === "string" ? { name: entry, quantity: 1, unitPrice: 0 } : { ...entry };
+            const weightedName = /^(.*) \((\d+) grams\)$/.exec(item.name);
+            const productName = weightedName ? weightedName[1] : item.name;
+            const databasePrice = products.get(productName);
+            if (databasePrice !== undefined) {
+              item.unitPrice = weightedName
+                ? Number((databasePrice * Number(weightedName[2]) / 1000).toFixed(2))
+                : databasePrice;
+            }
+            return item;
+          });
+          localStorage.setItem(storageKey, JSON.stringify(updatedItems));
+        } catch (error) {
+          console.warn("Could not refresh cart prices from MySQL:", error.message);
+        }
+      }
+      render();
+    }
+
+    initializeCollection();
+  </script>
+</body>
+</html>

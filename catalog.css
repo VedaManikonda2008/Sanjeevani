@@ -1,0 +1,74 @@
+:root {
+  --ink: #47351f;
+  --accent: #ae813e;
+  --paper: #fffaf0;
+  --line: rgba(71, 53, 31, .2);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  padding: 2rem 1rem 4rem;
+  color: var(--ink);
+  font-family: Georgia, serif;
+  background:
+    linear-gradient(rgba(243, 231, 200, .82), rgba(243, 231, 200, .82)),
+    url("ayur.png") center / cover fixed;
+}
+
+.catalog {
+  width: min(900px, 100%);
+  margin: 0 auto;
+}
+
+.back-link {
+  color: var(--accent);
+  font-family: "Times New Roman", Times, serif;
+  text-decoration: none;
+}
+
+.back-link:hover,
+.back-link:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: .25rem;
+}
+
+h1 {
+  margin: 2rem 0 1.5rem;
+  text-align: center;
+  font-size: clamp(2rem, 5vw, 3rem);
+}
+
+.catalog-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+  gap: .8rem;
+}
+
+.catalog-list a {
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--line);
+  border-radius: .5rem;
+  color: var(--ink);
+  background: rgba(255, 250, 240, .82);
+  box-shadow: 0 8px 16px rgba(71, 53, 31, .08);
+  font-size: 1.05rem;
+  text-decoration: none;
+  transition: transform .2s ease, background-color .2s ease;
+}
+
+.catalog-list a:hover,
+.catalog-list a:focus-visible {
+  transform: translateY(-2px);
+  background: #f1e5c8;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .catalog-list a {
+    transition: none;
+  }
+}

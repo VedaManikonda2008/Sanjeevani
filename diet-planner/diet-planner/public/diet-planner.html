@@ -1,0 +1,1586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Diet Planner | Sanjeevani</title>
+
+  <link rel="stylesheet" href="css/diet-planner.css" />
+  <link rel="stylesheet" href="css/personal-info.css" />
+</head>
+
+<body>
+
+<header class="dp-header">
+  <div class="dp-header-inner">
+    <a href="/home.html" class="dp-logo">🌿 Sanjeevani</a>
+    <h1>Diet Planner</h1>
+  </div>
+</header>
+
+<main class="dp-container">
+
+  <!-- =========================================================
+       STEP NAVIGATION
+  ========================================================== -->
+  <nav class="dp-steps" id="dpSteps">
+
+  <button type="button" class="dp-step active" data-step="details">
+    <span class="dp-step-number">1</span>
+    <span class="dp-step-label">Details</span>
+  </button>
+
+  <button type="button" class="dp-step" data-step="goal">
+    <span class="dp-step-number">2</span>
+    <span class="dp-step-label">Goal</span>
+  </button>
+
+  <button type="button" class="dp-step" data-step="dietType">
+    <span class="dp-step-number">3</span>
+    <span class="dp-step-label">Diet Type</span>
+  </button>
+
+  <button type="button" class="dp-step" data-step="duration">
+    <span class="dp-step-number">4</span>
+    <span class="dp-step-label">Duration</span>
+  </button>
+
+  <button type="button" class="dp-step" data-step="preview">
+    <span class="dp-step-number">5</span>
+    <span class="dp-step-label">Preview</span>
+  </button>
+
+  <button type="button" class="dp-step" data-step="tracker">
+    <span class="dp-step-number">6</span>
+    <span class="dp-step-label">Tracker</span>
+  </button>
+
+</nav>
+
+
+  <!-- =========================================================
+       PAGE 1 — PERSONAL INFORMATION
+       Existing IDs/names are preserved for diet-planner.js
+  ========================================================== -->
+  <section class="dp-panel personal-info-page" id="panel-details">
+
+    <div class="pi-shell">
+
+      <!-- LEFT VISUAL PANEL -->
+      <aside class="pi-visual">
+
+        <div class="pi-visual-image"></div>
+
+        <div class="pi-visual-overlay"></div>
+
+        <div class="pi-brand">
+          <div class="pi-brand-mark">🌿</div>
+
+          <div>
+            <strong>Sanjeevani</strong>
+            <span>Traditional wisdom · Modern wellness</span>
+          </div>
+        </div>
+
+        <div class="pi-visual-content">
+
+          <span class="pi-eyebrow">
+            PERSONAL WELLNESS PROFILE
+          </span>
+
+          <h2>
+            Begin your journey<br />
+            toward <em>balanced living.</em>
+          </h2>
+
+          <p>
+            Tell us a little about yourself. Your information helps
+            Sanjeevani create a personalized wellness plan around
+            your lifestyle, preferences and needs.
+          </p>
+
+          <div class="pi-benefits">
+
+            <div class="pi-benefit">
+              <span class="pi-benefit-icon">✦</span>
+              <div>
+                <strong>Personalized</strong>
+                <span>Built around your lifestyle</span>
+              </div>
+            </div>
+
+            <div class="pi-benefit">
+              <span class="pi-benefit-icon">♡</span>
+              <div>
+                <strong>Mindful</strong>
+                <span>Respecting your preferences</span>
+              </div>
+            </div>
+
+            <div class="pi-benefit">
+              <span class="pi-benefit-icon">⌁</span>
+              <div>
+                <strong>Holistic</strong>
+                <span>Food, movement & daily habits</span>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="pi-visual-footer">
+          <span>Ayurvedic wellness</span>
+          <span>•</span>
+          <span>Personalized nutrition</span>
+        </div>
+
+      </aside>
+
+
+      <!-- RIGHT FORM PANEL -->
+      <div class="pi-form-area">
+
+        <div class="pi-form-header">
+
+          <div>
+            <span class="pi-section-label">
+              STEP 01
+            </span>
+
+            <h2>Let's get to know you</h2>
+
+            <p>
+              Share a few details so we can make your Sanjeevani
+              experience more personal.
+            </p>
+          </div>
+
+          <div class="pi-progress">
+
+            <div class="pi-progress-ring" id="piProgressRing">
+              <span id="piProgressValue">0%</span>
+            </div>
+
+            <span>Profile<br />complete</span>
+
+          </div>
+
+        </div>
+
+
+        <form id="detailsForm" class="dp-form pi-form">
+
+          <!-- BASIC INFORMATION -->
+          <div class="pi-form-section">
+
+            <div class="pi-form-section-heading">
+              <div class="pi-heading-icon">01</div>
+
+              <div>
+                <h3>Basic information</h3>
+                <p>Help us understand your basic profile.</p>
+              </div>
+            </div>
+
+
+            <div class="pi-grid pi-grid-two">
+
+              <label class="pi-field pi-field-large">
+                <span class="pi-label">
+                  Full name
+                  <b>*</b>
+                </span>
+
+                <div class="pi-input-wrap">
+                  <span class="pi-input-icon">◉</span>
+
+                  <input
+                    type="text"
+                    id="pi-name"
+                    name="name"
+                    placeholder="Enter your full name"
+                    autocomplete="name"
+                    required
+                  />
+                </div>
+              </label>
+
+
+              <label class="pi-field">
+                <span class="pi-label">
+                  Age
+                  <b>*</b>
+                </span>
+
+                <div class="pi-input-wrap">
+                  <span class="pi-input-icon">◷</span>
+
+                  <input
+                    type="number"
+                    id="pi-age"
+                    name="age"
+                    min="10"
+                    max="100"
+                    placeholder="Your age"
+                    required
+                  />
+
+                  <span class="pi-input-unit">years</span>
+                </div>
+              </label>
+
+
+              <label class="pi-field">
+                <span class="pi-label">
+                  Height
+                  <b>*</b>
+                </span>
+
+                <div class="pi-input-wrap">
+                  <span class="pi-input-icon">↕</span>
+
+                  <input
+                    type="number"
+                    id="pi-height"
+                    name="height"
+                    min="100"
+                    max="230"
+                    placeholder="Your height"
+                    required
+                  />
+
+                  <span class="pi-input-unit">cm</span>
+                </div>
+              </label>
+
+
+              <label class="pi-field">
+                <span class="pi-label">
+                  Weight
+                  <b>*</b>
+                </span>
+
+                <div class="pi-input-wrap">
+                  <span class="pi-input-icon">◉</span>
+
+                  <input
+                    type="number"
+                    id="pi-weight"
+                    name="weight"
+                    min="25"
+                    max="250"
+                    placeholder="Your weight"
+                    required
+                  />
+
+                  <span class="pi-input-unit">kg</span>
+                </div>
+              </label>
+
+            </div>
+
+          </div>
+
+
+          <!-- FOOD & LIFESTYLE -->
+          <div class="pi-form-section">
+
+            <div class="pi-form-section-heading">
+              <div class="pi-heading-icon">02</div>
+
+              <div>
+                <h3>Food & lifestyle</h3>
+                <p>Tell us how you like to eat and prepare food.</p>
+              </div>
+            </div>
+
+
+            <div class="pi-grid pi-grid-two">
+
+              <label class="pi-field">
+                <span class="pi-label">
+                  Preferred cuisine
+                </span>
+
+                <div class="pi-input-wrap">
+                  <span class="pi-input-icon">⌘</span>
+
+                  <input
+                    type="text"
+                    id="pi-cuisine"
+                    name="cuisine"
+                    placeholder="e.g. South Indian"
+                  />
+                </div>
+
+                <small>
+                  You can mention more than one cuisine.
+                </small>
+              </label>
+
+
+              <label class="pi-field">
+                <span class="pi-label">
+                  Cooking time
+                </span>
+
+                <div class="pi-input-wrap pi-select-wrap">
+                  <span class="pi-input-icon">◷</span>
+
+                  <select
+                    id="pi-cooking-time"
+                    name="cookingTime"
+                  >
+                    <option value="Any">No preference</option>
+                    <option value="Under 15 mins">Under 15 mins</option>
+                    <option value="Under 30 mins">Under 30 mins</option>
+                    <option value="I have plenty of time">
+                      I have plenty of time
+                    </option>
+                  </select>
+
+                  <span class="pi-select-arrow">⌄</span>
+                </div>
+              </label>
+
+            </div>
+
+          </div>
+
+
+          <!-- PERSONAL PREFERENCES -->
+          <div class="pi-form-section">
+
+            <div class="pi-form-section-heading">
+              <div class="pi-heading-icon">03</div>
+
+              <div>
+                <h3>Your food preferences</h3>
+                <p>
+                  These details help us avoid foods you don't want
+                  and understand what works for you.
+                </p>
+              </div>
+            </div>
+
+
+            <div class="pi-preference-list">
+
+              <label class="pi-field pi-field-full">
+
+                <span class="pi-label">
+                  Allergies
+                  <small>OPTIONAL</small>
+                </span>
+
+                <div class="pi-input-wrap pi-textarea-wrap">
+                  <span class="pi-input-icon pi-textarea-icon">⚠</span>
+
+                  <input
+                    type="text"
+                    id="pi-allergies"
+                    name="allergies"
+                    placeholder="e.g. peanuts, dairy"
+                  />
+                </div>
+
+                <small>
+                  Separate multiple items with commas.
+                </small>
+
+              </label>
+
+
+              <label class="pi-field pi-field-full">
+
+                <span class="pi-label">
+                  Food restrictions / intolerances
+                  <small>OPTIONAL</small>
+                </span>
+
+                <div class="pi-input-wrap">
+                  <span class="pi-input-icon">⊘</span>
+
+                  <input
+                    type="text"
+                    id="pi-restrictions"
+                    name="restrictions"
+                    placeholder="e.g. gluten, lactose"
+                  />
+                </div>
+
+                <small>
+                  Mention foods or ingredients you need to avoid.
+                </small>
+
+              </label>
+
+
+              <label class="pi-field pi-field-full">
+
+                <span class="pi-label">
+                  Disliked foods
+                  <small>OPTIONAL</small>
+                </span>
+
+                <div class="pi-input-wrap">
+                  <span class="pi-input-icon">♡</span>
+
+                  <input
+                    type="text"
+                    id="pi-disliked-foods"
+                    name="dislikedFoods"
+                    placeholder="e.g. bitter gourd, okra"
+                  />
+                </div>
+
+              </label>
+
+
+              <label class="pi-field pi-field-full">
+
+                <span class="pi-label">
+                  Food preferences
+                  <small>OPTIONAL</small>
+                </span>
+
+                <div class="pi-input-wrap">
+                  <span class="pi-input-icon">✦</span>
+
+                  <input
+                    type="text"
+                    id="pi-preferences"
+                    name="preferences"
+                    placeholder="e.g. high fiber, low oil"
+                  />
+                </div>
+
+                <small>
+                  Examples: high protein, home cooked, low oil.
+                </small>
+
+              </label>
+
+            </div>
+
+          </div>
+
+
+          <!-- FORM FOOTER -->
+          <div class="pi-form-footer">
+
+            <div class="pi-privacy-note">
+              <span>✓</span>
+
+              <p>
+                Your preferences are saved securely to your
+                Sanjeevani profile and used only to personalize
+                your plan.
+              </p>
+            </div>
+
+
+            <button
+              type="submit"
+              class="dp-btn dp-btn-primary pi-continue-btn"
+            >
+              <span>Save & Continue</span>
+              <strong>→</strong>
+            </button>
+
+          </div>
+
+        </form>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================================
+       STEP 2 — GOAL
+  ========================================================== -->
+  <section class="dp-panel dp-hidden" id="panel-goal">
+  <div class="pro-choice-page goal-page">
+
+    <div class="pro-choice-header">
+      <div class="pro-choice-heading">
+        <div class="pro-eyebrow">
+          <span class="eyebrow-dot"></span>
+          STEP 02 · YOUR INTENTION
+        </div>
+
+        <h2>What would you like<br />Sanjeevani to focus on?</h2>
+
+        <p>
+          Choose the goal that best describes what you want from your
+          personalized wellness routine.
+        </p>
+      </div>
+
+      <div class="pro-step-indicator">
+        <strong>02</strong>
+        <span>/ 06</span>
+      </div>
+    </div>
+
+    <div class="pro-progress-track">
+      <span style="width: 33.33%;"></span>
+    </div>
+
+    <div class="choice-grid goal-choice-grid" id="goalCards">
+
+      <!-- Gain Weight -->
+      <button
+        type="button"
+        class="dp-option-card pro-choice-card"
+        data-value="Gain Weight"
+      >
+        <div class="choice-image">
+          <img
+            src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1200&q=88"
+            alt=""
+            loading="lazy"
+          />
+
+          <div class="image-shade"></div>
+
+          <div class="choice-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 3v18M3 12h18" />
+            </svg>
+          </div>
+        </div>
+
+        <div class="choice-content">
+          <div class="choice-topline">
+            <span class="choice-number">01</span>
+            <span class="selection-check">✓</span>
+          </div>
+
+          <h3>Gain Weight</h3>
+
+          <p>
+            Build a nourishing routine with wholesome meals, steady energy
+            and consistent everyday habits.
+          </p>
+
+          <span class="choice-action">
+            Choose this goal
+            <span>→</span>
+          </span>
+        </div>
+      </button>
+
+      <!-- Lose Weight -->
+      <button
+        type="button"
+        class="dp-option-card pro-choice-card"
+        data-value="Lose Weight"
+      >
+        <div class="choice-image">
+          <img
+            src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1200&q=88"
+            alt=""
+            loading="lazy"
+          />
+
+          <div class="image-shade"></div>
+
+          <div class="choice-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M5 7l7 7 7-7" />
+              <path d="M12 14v7" />
+            </svg>
+          </div>
+        </div>
+
+        <div class="choice-content">
+          <div class="choice-topline">
+            <span class="choice-number">02</span>
+            <span class="selection-check">✓</span>
+          </div>
+
+          <h3>Lose Weight</h3>
+
+          <p>
+            Follow a balanced routine built around satisfying meals,
+            hydration, movement and consistency.
+          </p>
+
+          <span class="choice-action">
+            Choose this goal
+            <span>→</span>
+          </span>
+        </div>
+      </button>
+
+      <!-- Maintain -->
+      <button
+        type="button"
+        class="dp-option-card pro-choice-card"
+        data-value="Maintain Healthy Lifestyle"
+      >
+        <div class="choice-image">
+          <img
+            src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?auto=format&fit=crop&w=1200&q=88"
+            alt=""
+            loading="lazy"
+          />
+
+          <div class="image-shade"></div>
+
+          <div class="choice-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="12" r="8.5" />
+              <path d="M7.5 12h9M12 7.5v9" />
+            </svg>
+          </div>
+        </div>
+
+        <div class="choice-content">
+          <div class="choice-topline">
+            <span class="choice-number">03</span>
+            <span class="selection-check">✓</span>
+          </div>
+
+          <h3>Maintain Healthy Lifestyle</h3>
+
+          <p>
+            Support everyday energy with balanced nutrition, hydration,
+            movement and healthy routines.
+          </p>
+
+          <span class="choice-action">
+            Choose this goal
+            <span>→</span>
+          </span>
+        </div>
+      </button>
+
+    </div>
+
+    <div class="pro-choice-footer">
+      <div class="pro-helper">
+        <span class="helper-leaf">✦</span>
+        <div>
+          <strong>One choice is enough</strong>
+          <span>
+            Select a card and Sanjeevani will continue automatically.
+          </span>
+        </div>
+      </div>
+
+      <button
+        type="button"
+        class="dp-btn dp-btn-secondary dp-back pro-back-btn"
+        data-back="details"
+      >
+        ← Back to Personal Information
+      </button>
+    </div>
+
+  </div>
+</section>
+
+
+  <!-- =========================================================
+       STEP 3 — DIET TYPE
+  ========================================================== -->
+ <section class="dp-panel dp-hidden" id="panel-dietType">
+  <div class="pro-choice-page diet-page">
+
+    <div class="pro-choice-header">
+      <div class="pro-choice-heading">
+
+        <div class="pro-eyebrow">
+          <span class="eyebrow-dot"></span>
+          STEP 03 · YOUR FOOD STYLE
+        </div>
+
+        <h2>What kind of food<br />fits your lifestyle?</h2>
+
+        <p>
+          Tell Sanjeevani what you normally prefer so your personalized
+          plan can be shaped around your food style.
+        </p>
+
+      </div>
+
+      <div class="pro-step-indicator">
+        <strong>03</strong>
+        <span>/ 06</span>
+      </div>
+    </div>
+
+    <div class="pro-progress-track">
+      <span style="width: 50%;"></span>
+    </div>
+
+    <div class="choice-grid diet-choice-grid" id="dietTypeCards">
+
+      <!-- Vegetarian -->
+      <button
+        type="button"
+        class="dp-option-card pro-choice-card diet-card"
+        data-value="Vegetarian"
+      >
+        <div class="choice-image">
+          <img
+            src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1200&q=88"
+            alt=""
+            loading="lazy"
+          />
+
+          <div class="image-shade"></div>
+
+          <div class="choice-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M20 4c-8 0-13 4-13 10 0 3.5 2.5 6 6 6 6 0 9-7 7-16Z" />
+              <path d="M7 17c2.5-3 5-5 9-7" />
+            </svg>
+          </div>
+        </div>
+
+        <div class="choice-content">
+          <div class="choice-topline">
+            <span class="choice-number">01</span>
+            <span class="selection-check">✓</span>
+          </div>
+
+          <h3>Vegetarian</h3>
+
+          <p>
+            Plant-forward meals featuring vegetables, fruits, grains,
+            legumes, dairy and other suitable foods.
+          </p>
+
+          <span class="choice-action">
+            Select Vegetarian
+            <span>→</span>
+          </span>
+        </div>
+      </button>
+
+      <!-- Non-Vegetarian -->
+      <button
+        type="button"
+        class="dp-option-card pro-choice-card diet-card"
+        data-value="Non-Vegetarian"
+      >
+        <div class="choice-image">
+          <img
+            src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=88"
+            alt=""
+            loading="lazy"
+          />
+
+          <div class="image-shade"></div>
+
+          <div class="choice-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M5 5l14 14" />
+              <path d="M6 18c2.5-2.5 4.5-5.5 5.5-9" />
+              <path d="M15 4c2.5.5 4 2 5 4.5" />
+            </svg>
+          </div>
+        </div>
+
+        <div class="choice-content">
+          <div class="choice-topline">
+            <span class="choice-number">02</span>
+            <span class="selection-check">✓</span>
+          </div>
+
+          <h3>Non-Vegetarian</h3>
+
+          <p>
+            A wider food selection that can include vegetarian choices
+            alongside suitable animal-based foods.
+          </p>
+
+          <span class="choice-action">
+            Select Non-Vegetarian
+            <span>→</span>
+          </span>
+        </div>
+      </button>
+
+      <!-- Both -->
+      <button
+        type="button"
+        class="dp-option-card pro-choice-card diet-card"
+        data-value="Both"
+      >
+        <div class="choice-image">
+          <img
+            src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=1200&q=88"
+            alt=""
+            loading="lazy"
+          />
+
+          <div class="image-shade"></div>
+
+          <div class="choice-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="12" r="8.5" />
+              <path d="M12 3.5v17" />
+              <path d="M3.5 12h17" />
+            </svg>
+          </div>
+        </div>
+
+        <div class="choice-content">
+          <div class="choice-topline">
+            <span class="choice-number">03</span>
+            <span class="selection-check">✓</span>
+          </div>
+
+          <h3>Both</h3>
+
+          <p>
+            A flexible plan that combines vegetarian choices with
+            non-vegetarian options according to your preferences.
+          </p>
+
+          <span class="choice-action">
+            Select Both
+            <span>→</span>
+          </span>
+        </div>
+      </button>
+
+    </div>
+
+    <div class="diet-note-card">
+      <div class="diet-note-icon">🌿</div>
+      <div>
+        <strong>Your food style stays personal.</strong>
+        <span>
+          Your choice works together with the allergies, restrictions and
+          preferences you entered earlier.
+        </span>
+      </div>
+    </div>
+
+    <button
+      type="button"
+      class="dp-btn dp-btn-secondary dp-back pro-back-btn"
+      data-back="goal"
+    >
+      ← Back to Goal
+    </button>
+
+  </div>
+</section>
+
+
+  <!-- =========================================================
+       STEP 4 — DURATION
+  ========================================================== -->
+ <section class="dp-panel dp-hidden" id="panel-duration">
+
+  <div class="sp-page duration-page">
+
+    <div class="sp-top">
+
+      <div class="sp-heading">
+
+        <div class="sp-eyebrow">
+          <span></span>
+          STEP 04 · YOUR RHYTHM
+        </div>
+
+        <h2>How would you like<br />to begin your journey?</h2>
+
+        <p>
+          Choose how much of your routine you'd like Sanjeevani
+          to prepare at once.
+        </p>
+
+      </div>
+
+      <div class="sp-step-number">
+        <strong>04</strong>
+        <small>/ 06</small>
+      </div>
+
+    </div>
+
+
+    <div class="sp-progress">
+      <span style="width: 66.66%;"></span>
+    </div>
+
+
+    <div class="duration-layout">
+
+      <!-- LEFT VISUAL -->
+      <div class="duration-visual">
+
+        <img
+          src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=1400&q=88"
+          alt="Fresh healthy food arranged on a table"
+        />
+
+        <div class="duration-visual-overlay"></div>
+
+        <div class="duration-quote">
+
+          <span class="quote-mark">“</span>
+
+          <p>
+            Small, consistent choices can become
+            meaningful everyday habits.
+          </p>
+
+          <div class="quote-line"></div>
+
+          <span>Sanjeevani wellness philosophy</span>
+
+        </div>
+
+      </div>
+
+
+      <!-- RIGHT CONTROLS -->
+      <div class="duration-content">
+
+        <div class="duration-intro">
+
+          <span class="mini-label">PLAN LENGTH</span>
+
+          <h3>Choose your planning rhythm</h3>
+
+          <p>
+            You can always create another plan later.
+            Start with the timeframe that feels comfortable for you.
+          </p>
+
+        </div>
+
+
+        <div
+          class="duration-options"
+          id="durationCards"
+        >
+
+          <!-- WEEKLY -->
+
+          <button
+            type="button"
+            class="dp-option-card duration-card"
+            data-value="weekly"
+          >
+
+            <div class="duration-card-icon weekly-icon">
+
+              <svg viewBox="0 0 24 24">
+                <rect x="3" y="5" width="18" height="16" rx="2"></rect>
+                <path d="M16 3v4M8 3v4M3 10h18"></path>
+                <path d="M8 14h3M14 14h3M8 18h3"></path>
+              </svg>
+
+            </div>
+
+
+            <div class="duration-card-main">
+
+              <div class="duration-card-top">
+
+                <div>
+                  <span class="duration-kicker">QUICK START</span>
+
+                  <h4>Weekly</h4>
+                </div>
+
+                <span class="duration-radio">
+                  <span></span>
+                </span>
+
+              </div>
+
+
+              <p>
+                A focused <strong>7-day</strong> plan
+                to explore your personalized routine.
+              </p>
+
+
+              <div class="duration-meta">
+
+                <span>
+                  <b>7</b>
+                  days
+                </span>
+
+                <span class="meta-divider"></span>
+
+                <span>
+                  Easy to review
+                </span>
+
+              </div>
+
+            </div>
+
+          </button>
+
+
+          <!-- MONTHLY -->
+
+          <button
+            type="button"
+            class="dp-option-card duration-card"
+            data-value="monthly"
+          >
+
+            <div class="duration-card-icon monthly-icon">
+
+              <svg viewBox="0 0 24 24">
+                <rect x="3" y="5" width="18" height="16" rx="2"></rect>
+                <path d="M16 3v4M8 3v4M3 10h18"></path>
+                <path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01"></path>
+              </svg>
+
+            </div>
+
+
+            <div class="duration-card-main">
+
+              <div class="duration-card-top">
+
+                <div>
+                  <span class="duration-kicker">EXTENDED ROUTINE</span>
+
+                  <h4>Monthly</h4>
+                </div>
+
+                <span class="duration-radio">
+                  <span></span>
+                </span>
+
+              </div>
+
+
+              <p>
+                A longer personalized plan designed
+                around the actual days in your selected month.
+              </p>
+
+
+              <div class="duration-meta">
+
+                <span>
+                  <b>28–31</b>
+                  days
+                </span>
+
+                <span class="meta-divider"></span>
+
+                <span>
+                  Deeper routine
+                </span>
+
+              </div>
+
+            </div>
+
+          </button>
+
+        </div>
+
+
+        <!-- START DATE -->
+
+        <div class="start-date-box">
+
+          <div class="start-date-icon">
+
+            <svg viewBox="0 0 24 24">
+              <rect x="3" y="5" width="18" height="16" rx="2"></rect>
+              <path d="M16 3v4M8 3v4M3 10h18"></path>
+              <path d="M8 14h.01M12 14h.01M16 14h.01"></path>
+            </svg>
+
+          </div>
+
+
+          <div class="start-date-copy">
+
+            <label for="startDateInput">
+              START DATE
+            </label>
+
+            <span>
+              When would you like your plan to begin?
+            </span>
+
+          </div>
+
+
+          <input
+            type="date"
+            id="startDateInput"
+          />
+
+        </div>
+
+
+        <!-- ACTION -->
+
+        <button
+          type="button"
+          class="dp-btn dp-btn-primary generate-plan-btn"
+          id="generateBtn"
+        >
+
+          <span class="generate-icon">✦</span>
+
+          <span>Generate My Plan</span>
+
+          <span class="generate-arrow">→</span>
+
+        </button>
+
+
+        <button
+          type="button"
+          class="dp-btn dp-btn-secondary dp-back duration-back"
+          data-back="dietType"
+        >
+          ← Back to Food Style
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+  <!-- =========================================================
+       STEP 5 — PREVIEW
+  ========================================================== -->
+  <!-- ============ SECTION: PREVIEW ============ -->
+<section class="dp-panel dp-hidden" id="panel-preview">
+
+  <div class="preview-hero">
+
+    <div class="preview-success-icon">
+      ✓
+    </div>
+
+    <div>
+      <span class="preview-eyebrow">SANJEEVANI WELLNESS PLAN</span>
+
+      <h2>Your Personalized Plan is Ready</h2>
+
+      <p>
+        Your wellness journey has been created using your preferences,
+        goal and dietary requirements.
+      </p>
+    </div>
+
+  </div>
+
+
+  <!-- PLAN SUMMARY -->
+  <div class="preview-overview-card">
+
+    <div class="preview-overview-heading">
+      <div>
+        <span class="preview-small-label">YOUR PLAN</span>
+        <h3>Plan Overview</h3>
+      </div>
+
+      <div class="preview-leaf">🌿</div>
+    </div>
+
+    <div id="previewSummary" class="preview-summary-grid"></div>
+
+  </div>
+
+
+  <!-- WEEKLY PLAN -->
+  <div class="preview-week-card">
+
+    <div class="preview-week-heading">
+
+      <div>
+        <span class="preview-small-label">PERSONALIZED MEAL PLAN</span>
+        <h3>Your Plan at a Glance</h3>
+        <p>
+          Choose a week to explore your meals and wellness activities.
+        </p>
+      </div>
+
+    </div>
+
+
+    <!-- WEEK TABS -->
+    <div id="previewWeekTabs" class="preview-week-tabs"></div>
+
+
+    <!-- SELECTED WEEK -->
+    <div id="previewDays" class="preview-days-compact"></div>
+
+  </div>
+
+
+  <!-- ACTIONS -->
+  <div class="preview-final-card">
+
+    <div>
+      <span class="preview-small-label">READY WHEN YOU ARE</span>
+
+      <h3>Begin your Sanjeevani journey</h3>
+
+      <p>
+        You can always track your meals, water and exercise from your
+        daily wellness dashboard.
+      </p>
+    </div>
+
+    <div class="preview-actions">
+
+      <button
+        type="button"
+        class="dp-btn dp-btn-secondary"
+        id="editPrefsBtn"
+      >
+        ← Edit Plan
+      </button>
+
+      <button
+        type="button"
+        class="dp-btn dp-btn-primary"
+        id="startPlanBtn"
+      >
+        Start My Plan →
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+      
+      
+
+
+    
+
+
+    
+      
+
+      
+
+
+  <!-- =========================================================
+       STEP 6 — TRACKER / DASHBOARD
+  ========================================================== -->
+
+<!-- =========================================================
+     ADVANCED WELLNESS TRACKER
+========================================================= -->
+<section class="dp-panel dp-hidden" id="panel-tracker">
+
+  <!-- Header -->
+  <div class="tracker-hero">
+
+    <div class="tracker-hero-left">
+      <div class="tracker-eyebrow">
+        <span>🌿</span>
+        YOUR WELLNESS JOURNEY
+      </div>
+
+      <h2 id="trackerDayTitle">Day 1</h2>
+
+      <p class="tracker-subtitle">
+        Small consistent steps create meaningful wellness.
+      </p>
+    </div>
+
+    <div class="tracker-status">
+      <span class="status-dot"></span>
+      <span>Active Plan</span>
+    </div>
+
+  </div>
+
+
+  <!-- Day navigation -->
+  <div class="tracker-navigation">
+
+    <button class="tracker-nav-btn" id="prevDayBtn">
+      <span>←</span>
+      <div>
+        <small>Previous</small>
+        <strong>Day</strong>
+      </div>
+    </button>
+
+    <div class="tracker-date-box">
+
+      <span class="calendar-icon">📅</span>
+
+      <div>
+        <small>TRACKING DATE</small>
+        <input type="date" id="dayDateSelector">
+      </div>
+
+    </div>
+
+    <button class="tracker-nav-btn tracker-next" id="nextDayBtn">
+      <div>
+        <small>Next</small>
+        <strong>Day</strong>
+      </div>
+      <span>→</span>
+    </button>
+
+  </div>
+
+
+  <!-- Progress overview -->
+  <div class="tracker-progress-card">
+
+    <div class="progress-card-top">
+
+      <div>
+        <span class="section-label">TODAY'S PROGRESS</span>
+
+        <h3 id="dayProgressText">
+          0 / 8 tasks completed (0%)
+        </h3>
+      </div>
+
+      <div class="progress-circle-small">
+        <span id="trackerProgressNumber">0%</span>
+      </div>
+
+    </div>
+
+    <div class="tracker-progress-track">
+      <div
+        class="tracker-progress-fill"
+        id="dayProgressBar">
+      </div>
+    </div>
+
+    <div class="progress-message" id="trackerProgressMessage">
+      Let's begin your wellness check-in.
+    </div>
+
+  </div>
+
+
+  <!-- Quick statistics -->
+  <div class="tracker-stats">
+
+    <div class="tracker-stat-card">
+      <div class="stat-icon">✓</div>
+      <div>
+        <span>COMPLETED</span>
+        <strong id="trackerCompletedCount">0</strong>
+      </div>
+    </div>
+
+    <div class="tracker-stat-card">
+      <div class="stat-icon">○</div>
+      <div>
+        <span>REMAINING</span>
+        <strong id="trackerRemainingCount">0</strong>
+      </div>
+    </div>
+
+    <div class="tracker-stat-card">
+      <div class="stat-icon">🌱</div>
+      <div>
+        <span>WELLNESS SCORE</span>
+        <strong id="trackerWellnessScore">0%</strong>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- Daily check-in -->
+  <div class="tracker-section-heading">
+
+    <div>
+      <span class="section-label">DAILY CHECK-IN</span>
+      <h3>Complete your wellness activities</h3>
+    </div>
+
+    <span class="tracker-task-count" id="trackerTaskCount">
+      0 tasks
+    </span>
+
+  </div>
+
+
+  <!-- Existing JS uses this table body.
+       We keep the IDs so your existing functionality continues. -->
+  <div class="tracker-table-container">
+
+    <table class="dp-tracker-table advanced-tracker-table">
+
+      <thead>
+        <tr>
+          <th>WELLNESS ACTIVITY</th>
+          <th>YOUR PLAN</th>
+          <th>STATUS</th>
+        </tr>
+      </thead>
+
+      <tbody id="trackerTableBody"></tbody>
+
+    </table>
+
+  </div>
+
+
+  <!-- Motivational message -->
+  <div class="tracker-motivation">
+
+    <div class="motivation-icon">
+      🌿
+    </div>
+
+    <div>
+      <strong>Keep going, one day at a time.</strong>
+
+      <p>
+        You don't need perfection.
+        Consistency is what builds a healthy routine.
+      </p>
+    </div>
+
+  </div>
+
+
+  <!-- Day navigation bottom -->
+  <div class="tracker-bottom-navigation">
+
+    <button
+      class="tracker-large-nav"
+      onclick="document.getElementById('prevDayBtn').click()">
+
+      <span>←</span>
+
+      <div>
+        <small>GO BACK</small>
+        <strong>Previous Day</strong>
+      </div>
+
+    </button>
+
+
+    <div class="tracker-day-indicator">
+      <span>YOUR CURRENT DAY</span>
+      <strong id="trackerCurrentDay">Day 1</strong>
+    </div>
+
+
+    <button
+      class="tracker-large-nav next"
+      onclick="document.getElementById('nextDayBtn').click()">
+
+      <div>
+        <small>CONTINUE</small>
+        <strong>Next Day</strong>
+      </div>
+
+      <span>→</span>
+
+    </button>
+
+  </div>
+
+
+  <!-- =====================================================
+       WELLNESS JOURNEY
+  ====================================================== -->
+
+  <div class="journey-card">
+
+    <div class="journey-header">
+
+      <div>
+        <span class="section-label">YOUR JOURNEY</span>
+        <h3>Plan Progress</h3>
+      </div>
+
+      <span class="journey-leaf">🌿</span>
+
+    </div>
+
+    <div class="dp-tabs tracker-tabs">
+
+      <button class="dp-tab active" data-tab="overview">
+        Overview
+      </button>
+
+      <button class="dp-tab" data-tab="report">
+        Final Report
+      </button>
+
+      <button class="dp-tab" data-tab="previous">
+        Previous Plans
+      </button>
+
+    </div>
+
+
+    <div class="dp-tab-panel journey-panel" id="tabOverview">
+
+      <div id="overviewContent"></div>
+
+    </div>
+
+
+    <div class="dp-tab-panel journey-panel dp-hidden" id="tabReport">
+
+      <button
+        class="dp-btn dp-btn-primary report-button"
+        id="loadReportBtn">
+
+        View My Wellness Report
+
+      </button>
+
+      <div id="reportContent"></div>
+
+    </div>
+
+
+    <div class="dp-tab-panel journey-panel dp-hidden" id="tabPrevious">
+
+      <div id="previousPlansContent"></div>
+
+    </div>
+
+  </div>
+
+</section>
+</main>
+
+
+<!-- EXISTING PLANNER LOGIC — DO NOT REMOVE -->
+<script src="js/diet-planner.js"></script>
+
+<!-- PERSONAL INFORMATION UI ENHANCEMENTS -->
+<script src="js/personal-info-ui.js"></script>
+
+</body>
+</html>

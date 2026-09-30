@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product details | Sanjeevani</title>
+  <link rel="stylesheet" href="product-details.css">
+</head>
+<body>
+  <main class="detail-page">
+    <a class="back-link" href="products.html">&#8592; All products</a>
+    <p class="brand">Sanjeevani</p>
+    <p id="detailMessage" class="detail-message" aria-live="polite">Loading product details...</p>
+    <article id="productDetail" class="product-detail" hidden>
+      <div class="detail-image-wrap"><img id="detailImage" alt=""></div>
+      <section class="detail-content">
+        <h1 id="detailName"></h1>
+        <p id="detailPrice" class="detail-price"></p>
+        <label id="weightControl" class="weight-control" for="detailWeight">
+          Choose weight
+          <select id="detailWeight">
+            <option value="1">1 kg</option>
+            <option value="0.75">750 grams</option>
+            <option value="0.5">500 grams</option>
+            <option value="0.25">250 grams</option>
+          </select>
+        </label>
+        <p id="selectedPrice" class="selected-price"></p>
+        <div class="detail-actions">
+          <button type="button" id="addToCart" class="primary-action">Add to cart</button>
+          <button type="button" id="buyNow" class="buy-action">Buy now</button>
+          <button type="button" id="wishlistButton" class="wish-action" aria-pressed="false">&#9825; Wishlist</button>
+        </div>
+        <section class="uses-section" aria-labelledby="usesTitle">
+          <h2 id="usesTitle">Product uses</h2>
+          <ul id="usesList"></ul>
+        </section>
+      </section>
+    </article>
+  </main>
+  <script>
+    const requestedName = new URLSearchParams(location.search).get("product");
+    const profile = JSON.parse(localStorage.getItem("sanjeevaniProfile") || "null");
+    const detail = document.getElementById("productDetail");
+    const message = document.getElementById("detailMessage");
+    const weightSelect = document.getElementById("detailWeight");
+    const weightControl = document.getElementById("weightControl");
+    const selectedPrice = document.getElementById("selectedPrice");
+    const fixedPriceProducts = new Set(["Kasturi And Gorojan", "Hing"]);
+    let productPrice = 0;
+    let fixedPrice = false;
+
+    function getCollectionStorageKey(name) {
+      const email = profile?.email?.trim().toLowerCase();
+      return email ? `${name}:${encodeURIComponent(email)}` : null;
+    }
+
+    function updateDisplayedPrice() {
+      const weight = Number(weightSelect.value);
+      const grams = weight * 1000;
+      selectedPrice.textContent = fixedPrice
+        ? `Price: ₹${productPrice.toFixed(2)}`
+        : `${grams === 1000 ? "1 kg" : `${grams} grams`}: ₹${(productPrice * weight).toFixed(2)}`;
+    }
+
+    async function loadProduct() {
+      if (!requestedName) {
+        message.textContent = "Choose a product from the product page to see its details.";
+        return;
+      }
+      try {
+        const response = await fetch("/api/products");
+        const result = await response.json();
+        if (!response.ok) throw new Error(result.message || "Product data could not be loaded from MySQL.");
+        const product = result.products.find((item) => item.name === requestedName);
+        if (!product) throw new Error("That product could not be found in the database.");
+
+        document.getElementById("detailImage").src = product.image;
+        document.getElementById("detailImage").alt = product.name;
+        document.getElementById("detailName").textContent = product.name;
+        productPrice = Number(product.price);
+        fixedPrice = fixedPriceProducts.has(product.name);
+        weightControl.hidden = fixedPrice;
+        document.getElementById("detailPrice").textContent = fixedPrice
+          ? `Price: ₹${productPrice.toFixed(2)}`
+          : `1 kg price: ₹${productPrice.toFixed(2)}`;
+        const usesList = document.getElementById("usesList");
+        String(product.uses || "").split(/(?<=[.!?])\s+/).filter(Boolean).forEach((use) => {
+          const item = document.createElement("li");
+          item.textContent = use;
+          usesList.append(item);
+        });
+        if (!usesList.children.length) usesList.innerHTML = "<li>Product details are not available.</li>";
+        detail.hidden = false;
+        message.textContent = "";
+        updateDisplayedPrice();
+      } catch (error) {
+        console.error("Unable to load product details:", error);
+        message.textContent = `${error.message} Check that the Sanjeevani server and MySQL are running, then try again.`;
+      }
+    }
+
+    weightSelect.addEventListener("change", updateDisplayedPrice);
+    document.getElementById("addToCart").addEventListener("click", () => {
+      const key = getCollectionStorageKey("sanjeevaniCart");
+      if (!key) { message.textContent = "Please log in before adding products to your cart."; return; }
+      const weight = fixedPrice ? 1 : Number(weightSelect.value);
+      const grams = weight * 1000;
+      const name = fixedPrice ? requestedName : `${requestedName} (${grams} grams)`;
+      const unitPrice = Number((productPrice * weight).toFixed(2));
+      const cart = JSON.parse(localStorage.getItem(key) || "[]").map((item) =>
+        typeof item === "string" ? { name: item, quantity: 1, unitPrice: 0 } : item
+      );
+      const existing = cart.find((item) => item.name === name);
+      if (existing) existing.quantity = (Number(existing.quantity) || 1) + 1;
+      else cart.push({ name, quantity: 1, unitPrice });
+      localStorage.setItem(key, JSON.stringify(cart));
+      message.textContent = `Added ${name} to your cart.`;
+    });
+    document.getElementById("buyNow").addEventListener("click", () => {
+      const key = getCollectionStorageKey("sanjeevaniCart");
+      if (!key) { message.textContent = "Please log in before buying products."; return; }
+      document.getElementById("addToCart").click();
+      location.href = "collection.html?type=cart";
+    });
+    const wishlistButton = document.getElementById("wishlistButton");
+    wishlistButton.addEventListener("click", () => {
+      const key = getCollectionStorageKey("sanjeevaniWishlist");
+      if (!key) { message.textContent = "Please log in before saving products to your wishlist."; return; }
+      const wishlist = JSON.parse(localStorage.getItem(key) || "[]");
+      const alreadySaved = wishlist.includes(requestedName);
+      const updated = alreadySaved
+        ? wishlist.filter((item) => item !== requestedName)
+        : [...wishlist, requestedName];
+      localStorage.setItem(key, JSON.stringify(updated));
+      wishlistButton.setAttribute("aria-pressed", String(!alreadySaved));
+      wishlistButton.innerHTML = `${alreadySaved ? "&#9825;" : "&#9829;"} Wishlist`;
+    });
+
+    loadProduct();
+  </script>
+</body>
+</html>

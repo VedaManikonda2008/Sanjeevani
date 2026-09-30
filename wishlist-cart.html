@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Sanjeevani | My Wellness</title>
+
+    <link
+        rel="stylesheet"
+        href="wishlist-cart.css"
+    >
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <header class="wellness-header">
+
+        <a href="index.html" class="brand">
+            <span class="brand-symbol">✦</span>
+
+            <div>
+                <strong>Sanjeevani</strong>
+                <small>Ayurvedic Wellness</small>
+            </div>
+        </a>
+
+
+        <a href="products.html" class="continue-shopping">
+            ← Continue shopping
+        </a>
+
+    </header>
+
+    <nav class="wellness-category-nav" aria-label="Product categories">
+        <a href="home.html">Home</a>
+        <a href="catalog.html">Catalog</a>
+        <a class="is-active" href="products.html#products">All Products</a>
+        <a href="products.html#pregnancyProducts">Pregnancy Products</a>
+        <a href="products.html#sugarProducts">Sugar</a>
+        <a href="products.html#faceProducts">Face</a>
+        <a href="products.html#painsProducts">Pains</a>
+        <a href="products.html#cancerProducts">Cancer</a>
+    </nav>
+
+
+
+    <!-- MAIN -->
+
+    <main class="wellness-page">
+
+
+        <!-- PAGE INTRO -->
+
+        <section class="page-intro">
+
+            <span>YOUR WELLNESS COLLECTION</span>
+
+            <h1>
+                My Wellness
+            </h1>
+
+            <p>
+                Your saved favourites and selected products,
+                all in one place.
+            </p>
+
+        </section>
+
+
+
+        <!-- TABS -->
+
+        <div class="wellness-tabs">
+
+            <button
+                class="wellness-tab active"
+                data-section="wishlistSection"
+            >
+                ♡ Wishlist
+
+                <b id="wishlistTabCount">
+                    0
+                </b>
+            </button>
+
+
+            <button
+                class="wellness-tab"
+                data-section="cartSection"
+            >
+                🛒 Cart
+
+                <b id="cartTabCount">
+                    0
+                </b>
+            </button>
+
+        </div>
+
+
+
+        <!-- =========================
+             WISHLIST
+        ========================== -->
+
+        <section
+            class="wellness-section active"
+            id="wishlistSection"
+        >
+
+            <div class="section-heading">
+
+                <div>
+                    <span>YOUR SAVED PRODUCTS</span>
+
+                    <h2>
+                        Wishlist
+                    </h2>
+                </div>
+
+                <p id="wishlistSummary">
+                    0 products
+                </p>
+
+            </div>
+
+
+            <div
+                class="wishlist-grid"
+                id="wishlistGrid"
+            >
+                <!-- JavaScript -->
+            </div>
+
+
+            <div
+                class="empty-state"
+                id="wishlistEmpty"
+            >
+
+                <div class="empty-icon">
+                    ♡
+                </div>
+
+                <h3>
+                    Your wishlist is waiting
+                </h3>
+
+                <p>
+                    Save products you love and
+                    come back to them anytime.
+                </p>
+
+                <a href="products.html">
+                    Explore the store →
+                </a>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             CART
+        ========================== -->
+
+        <section
+            class="wellness-section"
+            id="cartSection"
+        >
+
+            <div class="section-heading">
+
+                <div>
+                    <span>READY TO PURCHASE</span>
+
+                    <h2>
+                        Your Cart
+                    </h2>
+                </div>
+
+                <p id="cartSummary">
+                    0 items
+                </p>
+
+            </div>
+
+
+            <div class="cart-layout">
+
+
+                <!-- CART PRODUCTS -->
+
+                <div class="cart-products">
+
+                    <div
+                        id="cartProducts"
+                    >
+                        <!-- JavaScript -->
+                    </div>
+
+
+                    <div
+                        class="empty-state"
+                        id="cartEmpty"
+                    >
+
+                        <div class="empty-icon">
+                            🛒
+                        </div>
+
+                        <h3>
+                            Your cart is empty
+                        </h3>
+
+                        <p>
+                            Discover something special
+                            for your everyday wellness.
+                        </p>
+
+                        <a href="products.html">
+                            Explore the store →
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ORDER SUMMARY -->
+
+                <aside class="order-summary">
+
+                    <div class="summary-top">
+
+                        <span>
+                            ORDER SUMMARY
+                        </span>
+
+                        <h2>
+                            Your order
+                        </h2>
+
+                    </div>
+
+
+                    <div class="summary-row">
+
+                        <span>
+                            Items
+                        </span>
+
+                        <strong id="summaryItems">
+                            0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-row">
+
+                        <span>
+                            Subtotal
+                        </span>
+
+                        <strong id="summarySubtotal">
+                            ₹0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-row muted">
+
+                        <span>
+                            Delivery
+                        </span>
+
+                        <strong>
+                            Calculated at checkout
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-divider"></div>
+
+
+                    <div class="summary-total">
+
+                        <span>
+                            Total
+                        </span>
+
+                        <strong id="summaryTotal">
+                            ₹0
+                        </strong>
+
+                    </div>
+
+
+                    <button
+                        class="checkout-button"
+                        id="checkoutButton"
+                    >
+
+                        Proceed to checkout
+
+                        <span>
+                            →
+                        </span>
+
+                    </button>
+
+
+                    <div class="secure-note">
+
+                        <span>✓</span>
+
+                        Secure checkout
+                        • Easy ordering
+
+                    </div>
+
+                </aside>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- TOAST -->
+
+    <div
+        class="wellness-toast"
+        id="wellnessToast"
+    >
+    </div>
+
+
+    <script src="wishlist-cart.js"></script>
+
+</body>
+
+</html>

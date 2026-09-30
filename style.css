@@ -203,6 +203,17 @@ h1 {
   font-size: 0.95rem;
 }
 
+.home-option h3 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.home-option h3 a:hover,
+.home-option h3 a:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
 .register-card {
   width: min(820px, 100%);
   margin: 0 auto;
@@ -303,6 +314,26 @@ h1 {
 }
 .login-note a:hover {
   text-decoration: underline;
+}
+.login-section #loginEmail,
+.login-section #loginPassword {
+  width: 100%;
+  margin: 0 0 14px;
+  padding: 13px 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  outline: none;
+  color: var(--deep);
+  background: rgba(255, 255, 255, 0.52);
+}
+.login-section #loginEmail:focus,
+.login-section #loginPassword:focus {
+  border-color: rgba(92, 107, 40, 0.65);
+  background: #fffaf0;
+  box-shadow: 0 0 0 4px rgba(92, 107, 40, 0.1);
+}
+#forgotPassword {
+  font-size: 0.78rem;
 }
 .footer-note {
   margin: 0;
