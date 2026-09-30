@@ -1,65 +1,5 @@
 /* =========================================================
   /* =======================================================
-     15. FLOATING CART
-     ======================================================= */
-
-  const floatingCart =
-    document.createElement("a");
-
-  floatingCart.href =
-    "collection.html";
-
-  floatingCart.className =
-    "floating-cart";
-
-  floatingCart.innerHTML = `
-    🛒
-
-    <span>
-      View Cart
-    </span>
-
-    <span
-      class="floating-cart-count"
-      id="floatingCartCount"
-    >
-      0
-    </span>
-  `;
-
-  document.body.appendChild(
-    floatingCart
-  );
-
-
-  function syncFloatingCart() {
-
-    const mainCount =
-      document.getElementById(
-        "cartCount"
-      );
-
-    const floatingCount =
-      document.getElementById(
-        "floatingCartCount"
-      );
-
-    if (
-      mainCount &&
-      floatingCount
-    ) {
-
-      floatingCount.textContent =
-        mainCount.textContent;
-
-    }
-
-  }
-
-  syncFloatingCart();
-
-
-  /* =======================================================
      16. REFRESH COUNTS AFTER CART CHANGES
      ======================================================= */
 
@@ -69,7 +9,6 @@
 
       updateCartCount();
       updateWishlistCount();
-      syncFloatingCart();
 
     }
   );
